@@ -75,15 +75,37 @@ if command -v gpg &> /dev/null; then
 
     cd "dists/$CHANNEL"
 
+    # Use batch mode and passphrase from environment if available
+    GPG_OPTS="--batch --yes"
+    if [ -n "$GPG_PASSPHRASE" ]; then
+        GPG_OPTS="$GPG_OPTS --pinentry-mode loopback --passphrase-fd 0"
+    fi
+
     # Create InRelease (clearsigned)
-    if gpg --clearsign -o InRelease Release 2>/dev/null; then
+    if [ -n "$GPG_PASSPHRASE" ]; then
+        if echo "$GPG_PASSPHRASE" | gpg $GPG_OPTS --clearsign -o InRelease Release 2>&1 | grep -v "gpg: using"; then
+            :  # Suppress verbose output
+        fi
+    else
+        gpg $GPG_OPTS --clearsign -o InRelease Release 2>&1 | grep -v "gpg: using" || true
+    fi
+
+    if [ -f InRelease ]; then
         echo "✓ Created InRelease (clearsigned)"
     else
         echo "⚠ Failed to create InRelease - GPG key may not be configured"
     fi
 
     # Create Release.gpg (detached signature)
-    if gpg -abs -o Release.gpg Release 2>/dev/null; then
+    if [ -n "$GPG_PASSPHRASE" ]; then
+        if echo "$GPG_PASSPHRASE" | gpg $GPG_OPTS -abs -o Release.gpg Release 2>&1 | grep -v "gpg: using"; then
+            :  # Suppress verbose output
+        fi
+    else
+        gpg $GPG_OPTS -abs -o Release.gpg Release 2>&1 | grep -v "gpg: using" || true
+    fi
+
+    if [ -f Release.gpg ]; then
         echo "✓ Created Release.gpg (detached signature)"
     else
         echo "⚠ Failed to create Release.gpg - GPG key may not be configured"

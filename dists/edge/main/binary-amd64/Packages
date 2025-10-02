@@ -79,6 +79,22 @@ Description: High-performance API Gateway and Cache
  built for speed and reliability.
 
 Package: backstop
+Version: 0.0.0-20251002-d7e321f
+Architecture: amd64
+Maintainer: Backstop Team <backstop@efsavage.com>
+Depends: libc6
+Filename: pool/main/b/backstop/backstop_0.0.0-20251002-d7e321f_amd64.deb
+Size: 22095652
+MD5sum: 904072a5f64b9ecae31d4cc71074d5d2
+SHA1: 205b78dcda46022c8cffb19530801762ace2c94a
+SHA256: 7840992e4c16c9d4a5378d201c43b2e25e69f5a48558a334e215d69291b7ae86
+Section: web
+Priority: optional
+Description: High-performance API Gateway and Cache
+ Backstop is a high-performance Java/Graal API gateway and cache
+ built for speed and reliability.
+
+Package: backstop
 Version: 0.0.0-20251002-f09768b
 Architecture: amd64
 Maintainer: Backstop Team <backstop@efsavage.com>

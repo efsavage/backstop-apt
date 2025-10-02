@@ -23,8 +23,8 @@ echo "Updating $CHANNEL channel with $DEB_FILE..."
 
 # Copy package to pool
 DEB_BASENAME=$(basename "$DEB_FILE")
-cp "$DEB_FILE" "pool/main/b/backstop/"
-echo "Copied to pool/main/b/backstop/$DEB_BASENAME"
+cp -f "$DEB_FILE" "pool/main/b/backstop/" 2>/dev/null || true
+echo "Package: pool/main/b/backstop/$DEB_BASENAME"
 
 # Generate Packages file
 DIST_DIR="dists/$CHANNEL/main/binary-amd64"

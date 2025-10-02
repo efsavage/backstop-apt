@@ -28,13 +28,10 @@ echo "Copied to pool/main/b/backstop/$DEB_BASENAME"
 
 # Generate Packages file
 DIST_DIR="dists/$CHANNEL/main/binary-amd64"
-cd pool/main/b/backstop
 
-# Create Packages file
-dpkg-scanpackages --multiversion . > "../../../../$DIST_DIR/Packages"
-gzip -k -f "../../../../$DIST_DIR/Packages"
-
-cd ../../../../
+# Create Packages file (scan from pool directory with correct paths)
+dpkg-scanpackages --multiversion pool > "$DIST_DIR/Packages"
+gzip -k -f "$DIST_DIR/Packages"
 
 # Generate Release file
 cat > "$DIST_DIR/Release" <<EOF

@@ -2,7 +2,15 @@
 
 Multi-platform package repository for [Backstop](https://github.com/efsavage/backstop) - A high-performance API Gateway and Cache.
 
-Supports: **Debian/Ubuntu (APT)** • **RHEL/Amazon Linux (YUM)** • **macOS (Homebrew)**
+**Supports:** APT • YUM • APK • Snap • Homebrew
+
+| Platform | Package Manager | Supported |
+|----------|----------------|-----------|
+| Debian/Ubuntu | APT | ✅ |
+| RHEL/CentOS/Amazon Linux/Fedora | YUM/DNF | ✅ |
+| Alpine Linux | APK | ✅ |
+| Cross-distro Linux | Snap | ✅ |
+| macOS | Homebrew | ✅ |
 
 ## Installation
 
@@ -84,6 +92,46 @@ EOF
 sudo yum install backstop
 ```
 
+### Alpine Linux (APK)
+
+#### Stable Channel (Recommended)
+
+```bash
+# Add repository and GPG key
+wget -O /etc/apk/keys/backstop.rsa.pub https://efsavage.github.io/backstop-repo/KEY.gpg
+echo "https://efsavage.github.io/backstop-repo/alpine/stable" >> /etc/apk/repositories
+
+# Install
+apk update
+apk add backstop
+```
+
+#### Edge Channel (Latest Builds)
+
+```bash
+# Add repository and GPG key
+wget -O /etc/apk/keys/backstop.rsa.pub https://efsavage.github.io/backstop-repo/KEY.gpg
+echo "https://efsavage.github.io/backstop-repo/alpine/edge" >> /etc/apk/repositories
+
+# Install
+apk update
+apk add backstop
+```
+
+### Linux (Snap - Cross-distribution)
+
+```bash
+# Install from Snap Store (when published)
+sudo snap install backstop
+
+# Or install from local file
+sudo snap install backstop_*.snap --dangerous
+
+# Enable network access
+sudo snap connect backstop:network
+sudo snap connect backstop:network-bind
+```
+
 ### macOS (Homebrew)
 
 ```bash
@@ -162,6 +210,18 @@ sudo rm /usr/share/keyrings/backstop-archive-keyring.gpg
 ```bash
 sudo yum remove backstop
 sudo rm /etc/yum.repos.d/backstop.repo
+```
+
+### Alpine Linux
+```bash
+apk del backstop
+# Remove repository line from /etc/apk/repositories
+sed -i '/backstop-repo/d' /etc/apk/repositories
+```
+
+### Snap
+```bash
+sudo snap remove backstop
 ```
 
 ### macOS

@@ -4,21 +4,33 @@ Multi-platform package repository for [Backstop](https://github.com/efsavage/bac
 
 **Supports:** APT • YUM • APK • Snap • Homebrew
 
-| Platform | Package Manager | Supported |
-|----------|----------------|-----------|
-| Debian/Ubuntu | APT | ✅ |
-| RHEL/CentOS/Amazon Linux/Fedora | YUM/DNF | ✅ |
-| Alpine Linux | APK | ✅ |
-| Cross-distro Linux | Snap | ✅ |
-| macOS | Homebrew | ✅ |
+---
 
-## Installation
+## Table of Contents
+
+**Installation:**
+- [Debian/Ubuntu (APT)](#debianubuntu-apt)
+- [RHEL/CentOS/Amazon Linux/Fedora (YUM)](#rhelcentosamazon-linuxfedora-yum)
+- [Alpine Linux (APK)](#alpine-linux-apk)
+- [Cross-distro Linux (Snap)](#cross-distro-linux-snap)
+- [macOS (Homebrew)](#macos-homebrew)
+
+**Post-Installation:**
+- [Service Management](#service-management)
+- [Configuration](#configuration)
+- [Switching Channels](#switching-channels)
+- [Uninstall](#uninstall)
+
+---
+
+## Installation by Platform
 
 All packages are GPG-signed for security.
 
-### Debian / Ubuntu (APT)
+### Debian/Ubuntu (APT)
 
-#### Stable Channel (Recommended)
+<details>
+<summary><b>Stable Channel (Recommended)</b></summary>
 
 For production use, install from the stable channel (released versions only):
 
@@ -33,8 +45,10 @@ echo "deb [signed-by=/usr/share/keyrings/backstop-archive-keyring.gpg] https://e
 sudo apt update
 sudo apt install backstop
 ```
+</details>
 
-#### Edge Channel (Latest Builds)
+<details>
+<summary><b>Edge Channel (Latest Builds)</b></summary>
 
 For the latest development builds from the main branch:
 
@@ -49,10 +63,14 @@ echo "deb [signed-by=/usr/share/keyrings/backstop-archive-keyring.gpg] https://e
 sudo apt update
 sudo apt install backstop
 ```
+</details>
 
-### RHEL / CentOS / Amazon Linux (YUM)
+---
 
-#### Stable Channel (Recommended)
+### RHEL/CentOS/Amazon Linux/Fedora (YUM)
+
+<details>
+<summary><b>Stable Channel (Recommended)</b></summary>
 
 ```bash
 # Add GPG key
@@ -71,8 +89,10 @@ EOF
 # Install
 sudo yum install backstop
 ```
+</details>
 
-#### Edge Channel (Latest Builds)
+<details>
+<summary><b>Edge Channel (Latest Builds)</b></summary>
 
 ```bash
 # Add GPG key
@@ -91,10 +111,14 @@ EOF
 # Install
 sudo yum install backstop
 ```
+</details>
+
+---
 
 ### Alpine Linux (APK)
 
-#### Stable Channel (Recommended)
+<details>
+<summary><b>Stable Channel (Recommended)</b></summary>
 
 ```bash
 # Add repository and GPG key
@@ -105,8 +129,10 @@ echo "https://efsavage.github.io/backstop-repo/alpine/stable" >> /etc/apk/reposi
 apk update
 apk add backstop
 ```
+</details>
 
-#### Edge Channel (Latest Builds)
+<details>
+<summary><b>Edge Channel (Latest Builds)</b></summary>
 
 ```bash
 # Add repository and GPG key
@@ -117,8 +143,11 @@ echo "https://efsavage.github.io/backstop-repo/alpine/edge" >> /etc/apk/reposito
 apk update
 apk add backstop
 ```
+</details>
 
-### Linux (Snap - Cross-distribution)
+---
+
+### Cross-distro Linux (Snap)
 
 ```bash
 # Install from Snap Store (when published)
@@ -131,6 +160,8 @@ sudo snap install backstop_*.snap --dangerous
 sudo snap connect backstop:network
 sudo snap connect backstop:network-bind
 ```
+
+---
 
 ### macOS (Homebrew)
 
@@ -145,12 +176,9 @@ brew install backstop
 brew services start backstop
 ```
 
-## Channels
+---
 
-- **stable** - Released versions only (tagged releases like v0.1.0)
-- **edge** - Latest builds from main branch (development builds)
-
-## Usage
+## Post-Installation
 
 ### Service Management
 
@@ -210,6 +238,8 @@ sudo rc-update del backstop default
 brew services stop backstop
 ```
 
+---
+
 ### Configuration
 
 **Default Port:** 2226 (HTTPS) - *Named after Carlton Fisk's games caught record*
@@ -258,7 +288,7 @@ export BACKSTOP_CONFIG=/custom/path/backstop.toml
 - 4256 - Pete Rose's hit record
 - 3000-3999 - Development range
 
-### Testing
+**Testing:**
 
 ```bash
 # Test the server
@@ -268,25 +298,23 @@ curl -k https://localhost:2226/status
 curl -k https://localhost:9443/status
 ```
 
+---
+
 ## Switching Channels
 
-### APT: From Stable to Edge
+### APT: Stable ↔ Edge
 
 ```bash
+# To edge
 echo "deb [signed-by=/usr/share/keyrings/backstop-archive-keyring.gpg] https://efsavage.github.io/backstop-repo edge main" | sudo tee /etc/apt/sources.list.d/backstop.list
-sudo apt update
-sudo apt install --only-upgrade backstop
-```
+sudo apt update && sudo apt install --only-upgrade backstop
 
-### APT: From Edge to Stable
-
-```bash
+# To stable
 echo "deb [signed-by=/usr/share/keyrings/backstop-archive-keyring.gpg] https://efsavage.github.io/backstop-repo stable main" | sudo tee /etc/apt/sources.list.d/backstop.list
-sudo apt update
-sudo apt install backstop
+sudo apt update && sudo apt install backstop
 ```
 
-### YUM: Change Channel
+### YUM: Stable ↔ Edge
 
 Edit `/etc/yum.repos.d/backstop.repo` and change `stable` to `edge` (or vice versa) in the `baseurl`, then:
 
@@ -295,39 +323,65 @@ sudo yum clean all
 sudo yum update backstop
 ```
 
+---
+
 ## Uninstall
 
-### Debian / Ubuntu
+<details>
+<summary><b>Debian/Ubuntu</b></summary>
+
 ```bash
 sudo apt remove backstop
 sudo rm /etc/apt/sources.list.d/backstop.list
 sudo rm /usr/share/keyrings/backstop-archive-keyring.gpg
 ```
+</details>
 
-### RHEL / Amazon Linux
+<details>
+<summary><b>RHEL/Amazon Linux</b></summary>
+
 ```bash
 sudo yum remove backstop
 sudo rm /etc/yum.repos.d/backstop.repo
 ```
+</details>
 
-### Alpine Linux
+<details>
+<summary><b>Alpine Linux</b></summary>
+
 ```bash
 apk del backstop
 # Remove repository line from /etc/apk/repositories
 sed -i '/backstop-repo/d' /etc/apk/repositories
 ```
+</details>
 
-### Snap
+<details>
+<summary><b>Snap</b></summary>
+
 ```bash
 sudo snap remove backstop
 ```
+</details>
 
-### macOS
+<details>
+<summary><b>macOS</b></summary>
+
 ```bash
 brew services stop backstop
 brew uninstall backstop
 brew untap efsavage/backstop
 ```
+</details>
+
+---
+
+## Channels
+
+- **stable** - Released versions only (tagged releases like v0.1.0)
+- **edge** - Latest builds from main branch (development builds)
+
+---
 
 ## Repository Maintenance
 
@@ -335,6 +389,8 @@ This repository is automatically updated by GitHub Actions when new versions of 
 
 - Stable packages are published when version tags (v*) are pushed
 - Edge packages are published on every commit to main
+
+---
 
 ## Issues
 

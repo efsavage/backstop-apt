@@ -214,19 +214,40 @@ brew services stop backstop
 
 **Default Port:** 2226 (HTTPS) - *Named after Carlton Fisk's games caught record*
 
-To change the port or other settings:
+Backstop uses TOML for configuration. Create `/etc/backstop/backstop.toml`:
+
+```toml
+[server]
+port = 2226
+
+[tls]
+keystore_path = "/etc/backstop/backstop.p12"
+keystore_password = "backstop"
+```
+
+**Full example:**
 
 ```bash
-# Create/edit environment file
-sudo nano /etc/backstop/backstop.env
+# Copy example config
+sudo cp /etc/backstop/backstop.toml.example /etc/backstop/backstop.toml
 
-# Add configuration
-BACKSTOP_PORT=9443
-BACKSTOP_KEYSTORE_PATH=/etc/backstop/backstop.p12
-BACKSTOP_KEYSTORE_PASSWORD=your-password
+# Edit configuration
+sudo nano /etc/backstop/backstop.toml
 
 # Restart service
-sudo systemctl restart backstop  # or appropriate command for your system
+sudo systemctl restart backstop
+```
+
+**Environment variable overrides:**
+
+Environment variables take precedence over the TOML file:
+
+```bash
+# Override port
+export BACKSTOP_PORT=9443
+
+# Override config file location
+export BACKSTOP_CONFIG=/custom/path/backstop.toml
 ```
 
 **Port 2226:** Carlton Fisk caught 2,226 games for the Red Sox and White Sox - the most by any catcher when he retired. A tribute to one of baseball's greatest backstops seemed fitting for this project.

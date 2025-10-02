@@ -71,12 +71,32 @@ done
 
 cd ../..
 
+# Sign the Release file if GPG is available
+if command -v gpg &> /dev/null; then
+    echo ""
+    echo "Signing Release file..."
+
+    cd "dists/$CHANNEL"
+
+    # Create InRelease (clearsigned)
+    if gpg --clearsign -o InRelease Release 2>/dev/null; then
+        echo "✓ Created InRelease (clearsigned)"
+    else
+        echo "⚠ Failed to create InRelease - GPG key may not be configured"
+    fi
+
+    # Create Release.gpg (detached signature)
+    if gpg -abs -o Release.gpg Release 2>/dev/null; then
+        echo "✓ Created Release.gpg (detached signature)"
+    else
+        echo "⚠ Failed to create Release.gpg - GPG key may not be configured"
+    fi
+
+    cd ../..
+fi
+
 echo ""
 echo "Repository updated successfully!"
 echo "Channel: $CHANNEL"
 echo "Package: $DEB_BASENAME"
 echo ""
-echo "To sign the release (optional):"
-echo "  cd dists/$CHANNEL"
-echo "  gpg --clearsign -o InRelease Release"
-echo "  gpg -abs -o Release.gpg Release"

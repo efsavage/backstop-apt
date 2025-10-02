@@ -4,14 +4,17 @@ Debian package repository for [Backstop](https://github.com/efsavage/backstop) -
 
 ## Installation
 
+All packages are GPG-signed for security. The installation commands below will verify package signatures automatically.
+
 ### Stable Channel (Recommended)
 
-For production use, install from the stable channel:
+For production use, install from the stable channel (released versions only):
 
 ```bash
-# Add repository
+# Add GPG key for package verification
 curl -fsSL https://efsavage.github.io/backstop-apt/KEY.gpg | sudo gpg --dearmor -o /usr/share/keyrings/backstop-archive-keyring.gpg
 
+# Add repository
 echo "deb [signed-by=/usr/share/keyrings/backstop-archive-keyring.gpg] https://efsavage.github.io/backstop-apt stable main" | sudo tee /etc/apt/sources.list.d/backstop.list
 
 # Install
@@ -24,9 +27,10 @@ sudo apt install backstop
 For the latest development builds from the main branch:
 
 ```bash
-# Add repository (same key as stable)
+# Add GPG key for package verification
 curl -fsSL https://efsavage.github.io/backstop-apt/KEY.gpg | sudo gpg --dearmor -o /usr/share/keyrings/backstop-archive-keyring.gpg
 
+# Add repository
 echo "deb [signed-by=/usr/share/keyrings/backstop-archive-keyring.gpg] https://efsavage.github.io/backstop-apt edge main" | sudo tee /etc/apt/sources.list.d/backstop.list
 
 # Install

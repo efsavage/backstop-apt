@@ -31,30 +31,10 @@ All packages are GPG-signed for security.
 
 > **Note**: Currently only the **edge** channel is available. Stable releases coming soon!
 
-<details>
-<summary><b>Edge Channel (Latest Builds)</b></summary>
+<details open>
+<summary><b>Edge Channel (Latest Builds) - Available Now</b></summary>
 
 For the latest development builds:
-
-```bash
-# Add GPG key for package verification
-curl -fsSL https://efsavage.github.io/backstop-repo/KEY.gpg | sudo gpg --dearmor -o /usr/share/keyrings/backstop-archive-keyring.gpg
-
-# Add repository
-echo "deb [signed-by=/usr/share/keyrings/backstop-archive-keyring.gpg] https://efsavage.github.io/backstop-repo stable main" | sudo tee /etc/apt/sources.list.d/backstop.list
-
-# Install
-sudo apt update
-sudo apt install backstop
-```
-</details>
-
-<details>
-<summary><b>Stable Channel</b></summary>
-
-> ⚠️ **Not yet available** - Use edge channel below
-
-For production use (coming soon):
 
 ```bash
 # Add GPG key for package verification
@@ -69,34 +49,34 @@ sudo apt install backstop
 ```
 </details>
 
+<details>
+<summary><b>Stable Channel - Coming Soon</b></summary>
+
+> ⚠️ **Not yet available** - Use edge channel above
+
+For production use (coming soon):
+
+```bash
+# Add GPG key for package verification
+curl -fsSL https://efsavage.github.io/backstop-repo/KEY.gpg | sudo gpg --dearmor -o /usr/share/keyrings/backstop-archive-keyring.gpg
+
+# Add repository
+echo "deb [signed-by=/usr/share/keyrings/backstop-archive-keyring.gpg] https://efsavage.github.io/backstop-repo stable main" | sudo tee /etc/apt/sources.list.d/backstop.list
+
+# Install
+sudo apt update
+sudo apt install backstop
+```
+</details>
+
 ---
 
 ### RHEL/CentOS/Amazon Linux/Fedora (YUM)
 
-<details>
-<summary><b>Stable Channel (Recommended)</b></summary>
+> **Note**: Currently only the **edge** channel is available. Stable releases coming soon!
 
-```bash
-# Add GPG key
-sudo rpm --import https://efsavage.github.io/backstop-repo/KEY.gpg
-
-# Add repository
-sudo tee /etc/yum.repos.d/backstop.repo <<EOF
-[backstop-stable]
-name=Backstop Repository - Stable
-baseurl=https://efsavage.github.io/backstop-repo/yum/stable/x86_64
-enabled=1
-gpgcheck=1
-gpgkey=https://efsavage.github.io/backstop-repo/KEY.gpg
-EOF
-
-# Install
-sudo yum install backstop
-```
-</details>
-
-<details>
-<summary><b>Edge Channel (Latest Builds)</b></summary>
+<details open>
+<summary><b>Edge Channel (Latest Builds) - Available Now</b></summary>
 
 ```bash
 # Add GPG key
@@ -117,17 +97,43 @@ sudo yum install backstop
 ```
 </details>
 
+<details>
+<summary><b>Stable Channel - Coming Soon</b></summary>
+
+> ⚠️ **Not yet available** - Use edge channel above
+
+```bash
+# Add GPG key
+sudo rpm --import https://efsavage.github.io/backstop-repo/KEY.gpg
+
+# Add repository
+sudo tee /etc/yum.repos.d/backstop.repo <<EOF
+[backstop-stable]
+name=Backstop Repository - Stable
+baseurl=https://efsavage.github.io/backstop-repo/yum/stable/x86_64
+enabled=1
+gpgcheck=1
+gpgkey=https://efsavage.github.io/backstop-repo/KEY.gpg
+EOF
+
+# Install
+sudo yum install backstop
+```
+</details>
+
 ---
 
 ### Alpine Linux (APK)
 
-<details>
-<summary><b>Stable Channel (Recommended)</b></summary>
+> **Note**: Currently only the **edge** channel is available. Stable releases coming soon!
+
+<details open>
+<summary><b>Edge Channel (Latest Builds) - Available Now</b></summary>
 
 ```bash
 # Add repository and GPG key
 wget -O /etc/apk/keys/backstop.rsa.pub https://efsavage.github.io/backstop-repo/KEY.gpg
-echo "https://efsavage.github.io/backstop-repo/alpine/stable" >> /etc/apk/repositories
+echo "https://efsavage.github.io/backstop-repo/alpine/edge" >> /etc/apk/repositories
 
 # Install
 apk update
@@ -136,12 +142,14 @@ apk add backstop
 </details>
 
 <details>
-<summary><b>Edge Channel (Latest Builds)</b></summary>
+<summary><b>Stable Channel - Coming Soon</b></summary>
+
+> ⚠️ **Not yet available** - Use edge channel above
 
 ```bash
 # Add repository and GPG key
 wget -O /etc/apk/keys/backstop.rsa.pub https://efsavage.github.io/backstop-repo/KEY.gpg
-echo "https://efsavage.github.io/backstop-repo/alpine/edge" >> /etc/apk/repositories
+echo "https://efsavage.github.io/backstop-repo/alpine/stable" >> /etc/apk/repositories
 
 # Install
 apk update

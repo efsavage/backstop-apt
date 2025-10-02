@@ -285,7 +285,7 @@ export BACKSTOP_CONFIG=/custom/path/backstop.toml
 **Alternative ports if 2226 conflicts:**
 - 8443 - HTTPS alternate
 - 9443 - Another HTTPS alternate
-- 4256 - Pete Rose's hit record
+- 3371 - Mike Piazza's hits (catcher offensive record)
 - 3000-3999 - Development range
 
 **Testing:**

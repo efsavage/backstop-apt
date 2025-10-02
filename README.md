@@ -152,22 +152,97 @@ brew services start backstop
 
 ## Usage
 
-After installation:
+### Service Management
+
+**Start/Stop/Restart:**
 
 ```bash
-# Start the service (systemd on Linux)
+# Systemd (Debian, Ubuntu, RHEL, Fedora, etc.)
 sudo systemctl start backstop
+sudo systemctl stop backstop
+sudo systemctl restart backstop
+sudo systemctl status backstop
+
+# OpenRC (Alpine Linux)
+sudo rc-service backstop start
+sudo rc-service backstop stop
+sudo rc-service backstop restart
+sudo rc-service backstop status
+
+# Snap
+sudo snap start backstop
+sudo snap stop backstop
+sudo snap restart backstop
+
+# macOS (Homebrew)
+brew services start backstop
+brew services stop backstop
+brew services restart backstop
+brew services info backstop
+```
+
+**Enable at boot (auto-start):**
+
+```bash
+# Systemd
 sudo systemctl enable backstop
 
-# Or on macOS with Homebrew
-brew services start backstop
+# OpenRC
+sudo rc-update add backstop default
 
-# Check status
-sudo systemctl status backstop  # Linux
-brew services info backstop      # macOS
+# Snap (already auto-starts if installed as daemon)
+# No action needed
 
-# Test
+# macOS
+brew services start backstop  # Also enables auto-start
+```
+
+**Disable auto-start:**
+
+```bash
+# Systemd
+sudo systemctl disable backstop
+
+# OpenRC
+sudo rc-update del backstop default
+
+# macOS
+brew services stop backstop
+```
+
+### Configuration
+
+**Default Port:** 8443 (HTTPS)
+
+To change the port or other settings:
+
+```bash
+# Create/edit environment file
+sudo nano /etc/backstop/backstop.env
+
+# Add configuration
+BACKSTOP_PORT=9443
+BACKSTOP_KEYSTORE_PATH=/etc/backstop/backstop.p12
+BACKSTOP_KEYSTORE_PASSWORD=your-password
+
+# Restart service
+sudo systemctl restart backstop  # or appropriate command for your system
+```
+
+**Common ports that avoid conflicts:**
+- 8443 (default) - HTTPS alternate
+- 9443 - Another common HTTPS alternate
+- 8444 - HTTPS alternate
+- 3000-3999 - Development range
+
+### Testing
+
+```bash
+# Test the server
 curl -k https://localhost:8443/status
+
+# Or with custom port
+curl -k https://localhost:9443/status
 ```
 
 ## Switching Channels

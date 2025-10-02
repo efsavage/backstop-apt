@@ -29,10 +29,12 @@ All packages are GPG-signed for security.
 
 ### Debian/Ubuntu (APT)
 
-<details>
-<summary><b>Stable Channel (Recommended)</b></summary>
+> **Note**: Currently only the **edge** channel is available. Stable releases coming soon!
 
-For production use, install from the stable channel (released versions only):
+<details>
+<summary><b>Edge Channel (Latest Builds)</b></summary>
+
+For the latest development builds:
 
 ```bash
 # Add GPG key for package verification
@@ -48,9 +50,11 @@ sudo apt install backstop
 </details>
 
 <details>
-<summary><b>Edge Channel (Latest Builds)</b></summary>
+<summary><b>Stable Channel</b></summary>
 
-For the latest development builds from the main branch:
+> ⚠️ **Not yet available** - Use edge channel below
+
+For production use (coming soon):
 
 ```bash
 # Add GPG key for package verification

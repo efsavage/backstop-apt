@@ -59,6 +59,36 @@ sudo systemctl status backstop
 curl -k https://localhost:8443/status
 ```
 
+## Switching Channels
+
+### From Stable to Edge
+
+To switch from stable to edge channel:
+
+```bash
+# Update repository configuration
+echo "deb [signed-by=/usr/share/keyrings/backstop-archive-keyring.gpg] https://efsavage.github.io/backstop-apt edge main" | sudo tee /etc/apt/sources.list.d/backstop.list
+
+# Update and upgrade
+sudo apt update
+sudo apt install --only-upgrade backstop
+```
+
+### From Edge to Stable
+
+To switch from edge to stable channel:
+
+```bash
+# Update repository configuration
+echo "deb [signed-by=/usr/share/keyrings/backstop-archive-keyring.gpg] https://efsavage.github.io/backstop-apt stable main" | sudo tee /etc/apt/sources.list.d/backstop.list
+
+# Update and install specific version
+sudo apt update
+sudo apt install backstop
+```
+
+**Note:** When switching from edge to stable, you may need to downgrade if edge has a newer version. APT will handle this automatically.
+
 ## Uninstall
 
 ```bash

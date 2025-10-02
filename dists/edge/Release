@@ -1,0 +1,18 @@
+Origin: Backstop
+Label: Backstop
+Suite: edge
+Codename: edge
+Date: Thu, 02 Oct 2025 04:21:10 +0000
+Architectures: amd64
+Components: main
+Description: Backstop APT Repository - edge channel
+MD5Sum:
+ d41d8cd98f00b204e9800998ecf8427e 0 main/binary-amd64/.gitkeep
+ a1cd50dbee3b68ba8dec30cc33c79f25 549 main/binary-amd64/Packages
+ 5e29bd6d9ea87478ba20023539bf73f3 83 main/binary-amd64/Release
+ 7c0790223a02de090d076126c45f4523 390 main/binary-amd64/Packages.gz
+SHA256:
+ e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855 0 main/binary-amd64/.gitkeep
+ d6575774c77ef9f6f763ccea1a8589e88863b87e3eb1a42d75245cd66d7473d1 549 main/binary-amd64/Packages
+ 5ff1511336848a23a37229c47452bd2b427972076f77b6844ef60147e8f8ff0a 83 main/binary-amd64/Release
+ 28544e5b2e67a77f4d66eb7e97744e1c34913ec388ae27d86c9735bdeaee2bb5 390 main/binary-amd64/Packages.gz

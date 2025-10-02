@@ -212,7 +212,7 @@ brew services stop backstop
 
 ### Configuration
 
-**Default Port:** 8443 (HTTPS)
+**Default Port:** 2226 (HTTPS) - *Named after Carlton Fisk's games caught record*
 
 To change the port or other settings:
 
@@ -229,17 +229,19 @@ BACKSTOP_KEYSTORE_PASSWORD=your-password
 sudo systemctl restart backstop  # or appropriate command for your system
 ```
 
-**Common ports that avoid conflicts:**
-- 8443 (default) - HTTPS alternate
-- 9443 - Another common HTTPS alternate
-- 8444 - HTTPS alternate
+**Port 2226:** Carlton Fisk caught 2,226 games for the Red Sox and White Sox - the most by any catcher when he retired. A tribute to one of baseball's greatest backstops seemed fitting for this project.
+
+**Alternative ports if 2226 conflicts:**
+- 8443 - HTTPS alternate
+- 9443 - Another HTTPS alternate
+- 4256 - Pete Rose's hit record
 - 3000-3999 - Development range
 
 ### Testing
 
 ```bash
 # Test the server
-curl -k https://localhost:8443/status
+curl -k https://localhost:2226/status
 
 # Or with custom port
 curl -k https://localhost:9443/status

@@ -203,6 +203,12 @@ sudo systemctl stop backstop
 sudo systemctl restart backstop
 sudo systemctl status backstop
 
+# WSL or non-systemd environments (run manually)
+sudo -u backstop /usr/bin/backstop
+# Test with:
+# curl -k https://localhost:2226/status
+# curl -k https://localhost:2226/health
+
 # OpenRC (Alpine Linux)
 sudo rc-service backstop start
 sudo rc-service backstop stop
